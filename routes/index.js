@@ -8,5 +8,6 @@ router.use('/comments',require('./comments.route'));
 router.use('/communityLikes',require('./communityLikes.route'));
 router.use('/',require('./kakao.route'));
 router.use('/pets',require('./pets.route'))
+router.use('/recruits',require('./recruits.route'))
 module.exports =router;
 
