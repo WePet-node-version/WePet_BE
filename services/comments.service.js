@@ -18,9 +18,9 @@ class CommentService{
             userId,
             communityId,
         });
-        findAllComment.sort((a,b)=>{
-            return b.createdAt - a.createdAt;
-        });
+        // findAllComment.sort((a,b)=>{
+        //     return b.createdAt - a.createdAt;
+        // });
         return findAllComment
     }
 

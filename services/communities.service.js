@@ -25,9 +25,9 @@ class CommunityService{
     //게시글 전체조회
     findAllCommunity = async()=>{
         const findAllCommunity = await this.communityRepository.findAllCommunity();
-            findAllCommunity.sort((a,b)=>{
-                return b.createdAt - a.createdAt;
-            });
+            // findAllCommunity.sort((a,b)=>{
+            //     return b.createdAt - a.createdAt;
+            // });
             return findAllCommunity
         
     }

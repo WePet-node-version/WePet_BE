@@ -21,10 +21,7 @@ class ApplyService{
     
     findAllApply = async()=>{
         const findAllApply = await this.applyRepository.findAllApply();
-        findAllApply.sort((a,b)=>{
-                return b.createdAt - a.createdAt;
-            });
-            return findAllApply
+        return findAllApply
         
     }
 

@@ -21,9 +21,6 @@ class RecruitService{
     
     findAllRecruit = async()=>{
         const findAllRecruit = await this.recruitRepository.findAllRecruit();
-            findAllRecruit.sort((a,b)=>{
-                return b.createdAt - a.createdAt;
-            });
             return findAllRecruit
         
     }
