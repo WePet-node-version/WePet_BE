@@ -10,6 +10,6 @@ router.post('/', auth,upload.upload.single('image'), communityController.createC
 router.get('/',auth, communityController.findAllCommunity)
 router.get('/:communityId',auth, communityController.findCommunity)
 router.put('/:communityId',auth,upload.upload.single('image'),communityController.updateCommunity)
-router.delete('/:communityId',auth,upload.delete_file,communityController.deleteCommunity)
+router.delete('/:communityId',auth,communityController.deleteCommunity)
 
 module.exports = router;
