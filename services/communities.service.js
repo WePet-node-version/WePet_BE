@@ -11,6 +11,7 @@ class CommunityService{
         if(!findById){
             throw new Error('유저정보가 없습니다.')
         }
+
         const createCommunity = await this.communityRepository.createCommunity({
             userId,
             title,
@@ -49,6 +50,7 @@ class CommunityService{
 
     //게시글 수정
     updateCommunity = async({userId,communityId,title,content,image})=>{
+        
         const findById = await this.communityRepository.findById({userId})
         if(!findById){
             throw new Error('권한이 없습니다.')

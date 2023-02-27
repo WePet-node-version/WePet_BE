@@ -29,7 +29,7 @@ module.exports = {
       likeCount:{
         type:Sequelize.INTEGER,
       },
-      Image:{
+      image:{
         type:Sequelize.DataTypes.STRING,
         allowNull:true,
       },

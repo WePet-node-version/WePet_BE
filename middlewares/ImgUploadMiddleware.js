@@ -7,7 +7,7 @@ class S3ImageController {
 upload = multer({
     storage: multerS3({
       s3: s3,
-      bucket: 'wepet-bucket', //버켓 이름
+      bucket: 'wepet', //버켓 이름
       acl: 'public-read', //접근 권한
       contentType: multerS3.AUTO_CONTENT_TYPE,
       shouldTransform: true,
@@ -25,13 +25,13 @@ upload = multer({
   });
 
   delete_file = async (req, res, next) => {
-    const { imageId } = req.params;
-    const imgName = await Community.findOne({ where: { imageId } });
+    const { communityId } = req.params;
+    const imgName = await Community.findOne({ where: { communityId } });
 
-    const s3ImgName = imgName.dirImg.split('/').pop()
+    const s3ImgName = imgName.image.split('/').pop()
 
     let params = {
-      Bucket: 'wepet-bucket', //버켓 이름
+      Bucket: 'wepet', //버켓 이름
       Key: s3ImgName,
     };
 

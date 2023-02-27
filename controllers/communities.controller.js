@@ -7,11 +7,13 @@ class CommunityController{
         try{
             const {userId} = res.locals.user;
             const {title,content} = req.body;
-            const imageFileName = req.file ? req.file.key : null;
-            // imageFileName에 파일명이 들어 갔으면 s3 url주소 추가
-            const image = imageFileName
-                ? process.env.S3_STORAGE_URL + imageFileName
-                : null;
+            const image = await this.attachImage(req);
+            // const imageFileName = req.file ? req.file.key : null;
+            console.log(imageFileName,'12312312321321312313',req.file)
+            //imageFileName에 파일명이 들어 갔으면 s3 url주소 추가
+            // const image = imageFileName
+            //     ? process.env.S3_STORAGE_URL + imageFileName
+            //     : null;
             const createCommunity = await this.communityService.createCommunity({userId,title,content,image})
             res.status(200).json({data:createCommunity});
         }catch(error){
@@ -51,12 +53,13 @@ class CommunityController{
             const {userId} = res.locals.user;
             const {communityId} = req.params;
             const {title,content}=req.body;
-            // 수정사항에 이미지 파일이 있으면 key값으로 이름 정해주고 없으면 Null
-            const imageFileName = req.file ? req.file.key : null;
-             // imageFileName에 파일명 들어가면 s3 url주소 추가
-            const image = imageFileName
-            ? process.env.S3_STORAGE_URL + imageFileName
-            : undefined;
+            const image = await this.attachImage(req);
+            // // 수정사항에 이미지 파일이 있으면 key값으로 이름 정해주고 없으면 Null
+            // const imageFileName = req.file ? req.file.key : null;
+            // //  imageFileName에 파일명 들어가면 s3 url주소 추가
+            // const image = imageFileName
+            // ? process.env.S3_STORAGE_URL + imageFileName
+            // : undefined;
             if(!communityId){
                 throw new Error('존재하지 않는 게시글입니다.')
             }
@@ -78,5 +81,16 @@ class CommunityController{
             next(error);
         }
     }
+    
+    attachImage = async (req) => {
+        // 이미지 첨부 여부 확인
+        const imageFileName = req.file ? req.file.key : null;
+        // 이미지 Url 생성
+        const image = imageFileName
+          ? process.env.S3_STORAGE_URL + imageFileName
+          : undefined;
+    
+        return image;
+      };
 }
 module.exports = CommunityController;
