@@ -4,10 +4,10 @@ const s3 = require('../config/s3');
 const { Community } = require('../models');
 
 class S3ImageController {
-upload = multer({
+  upload = multer({
     storage: multerS3({
       s3: s3,
-      bucket: 'wepet', //버켓 이름
+      bucket: 'wepet-bucket', //버켓 이름
       acl: 'public-read', //접근 권한
       contentType: multerS3.AUTO_CONTENT_TYPE,
       shouldTransform: true,
@@ -31,7 +31,7 @@ upload = multer({
     const s3ImgName = imgName.image.split('/').pop()
 
     let params = {
-      Bucket: 'wepet', //버켓 이름
+      Bucket: 'wepet-bucket', //버켓 이름
       Key: s3ImgName,
     };
 

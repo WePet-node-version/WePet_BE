@@ -1,4 +1,5 @@
 const CommunityService = require('../services/communities.service');
+require('dotenv').config();
 
 class CommunityController{
     communityService = new CommunityService();

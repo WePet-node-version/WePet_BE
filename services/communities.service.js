@@ -1,5 +1,6 @@
 const CommunityRepository = require('../repositories/communities.repository');
 const jwt = require("jsonwebtoken");
+require('dotenv').config();
 
 class CommunityService{
     communityRepository =new CommunityRepository();
