@@ -2,7 +2,7 @@ const RecruitRepository = require('../repositories/recruits.repository');
 
 class RecruitService{
     recruitRepository =new RecruitRepository();
-    //게시글 작성
+
     createRecruit = async({userId,title,content})=>{
         const findById = await this.recruitRepository.findById({
             userId
@@ -28,8 +28,8 @@ class RecruitService{
         
     }
 
-    findRecruit = async({communityId})=>{
-        const findRecruit = await this.recruitRepository.findRecruit({communityId});
+    findRecruit = async({recruitId})=>{
+        const findRecruit = await this.recruitRepository.findRecruit({recruitId});
         if(!findRecruit){
             throw new Error('잘못된 요청입니다.')
         }
@@ -43,7 +43,6 @@ class RecruitService{
         }
     };
 
-    //게시글 수정
     updateRecruit = async({userId,recruitId,title,content})=>{
         const findById = await this.recruitRepository.findById({userId})
         if(!findById){

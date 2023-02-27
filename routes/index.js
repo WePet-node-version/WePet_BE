@@ -9,5 +9,6 @@ router.use('/communityLikes',require('./communityLikes.route'));
 router.use('/',require('./kakao.route'));
 router.use('/pets',require('./pets.route'))
 router.use('/recruits',require('./recruits.route'))
+router.use('/applies',require('./applies.route'))
 module.exports =router;
 

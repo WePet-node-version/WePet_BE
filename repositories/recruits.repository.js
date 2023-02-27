@@ -24,8 +24,8 @@ class RecruitRepository {
     }
     
     findRecruit = async({recruitId})=>{
-        const findCommunity = await Recruit.findOne({where:{recruitId}})
-        return findCommunity
+        const findRecruit = await Recruit.findOne({where:{recruitId}})
+        return findRecruit
     }
 
     updateRecruit = async({recruitId,userId,title,content})=>{
