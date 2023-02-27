@@ -33,6 +33,10 @@ module.exports = {
         type:Sequelize.DataTypes.STRING,
         allowNull:true,
       },
+      nickname:{
+        type:Sequelize.DataTypes.STRING,
+        allowNull:false,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

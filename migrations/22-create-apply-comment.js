@@ -30,6 +30,10 @@ module.exports = {
       comment: {
         type: Sequelize.STRING
       },
+      nickname:{
+        type:Sequelize.DataTypes.STRING,
+        allowNull:false,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

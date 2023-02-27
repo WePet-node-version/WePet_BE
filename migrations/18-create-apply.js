@@ -26,6 +26,10 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull:false,
       },
+      nickname:{
+        type:Sequelize.DataTypes.STRING,
+        allowNull:false,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
