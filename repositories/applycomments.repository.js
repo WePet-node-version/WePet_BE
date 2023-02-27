@@ -2,12 +2,11 @@ const {User,ApplyComment} = require('../models');
 const { Op } = require('sequelize');
 
 class ApplyCommentRepository{
-    createComment = async({userId,applyId,comment,nickname})=>{
+    createComment = async({userId,applyId,comment})=>{
         const createComment = await ApplyComment.create({
             userId,
             applyId,
             comment,
-            nickname
         })
         return createComment
     }

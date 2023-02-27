@@ -14,7 +14,6 @@ class RecruitService{
             userId,
             title,
             content,
-            nickname
         })
         return createRecruit;
     }

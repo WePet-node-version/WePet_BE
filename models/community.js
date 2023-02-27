@@ -54,10 +54,6 @@ module.exports = (sequelize, DataTypes) => {
       allowNull:true,
       defaultValue:0,
     },
-    nickname:{
-      type:DataTypes.STRING,
-      allowNull:false
-    },
     image:{
       type:DataTypes.STRING,
       allowNull:true,

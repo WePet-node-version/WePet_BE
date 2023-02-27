@@ -48,10 +48,7 @@ module.exports = (sequelize, DataTypes) => {
       onDelete:'cascade',
     },
     comment: DataTypes.STRING,
-    nickname:{
-      type:DataTypes.STRING,
-      allowNull:false
-    }
+
   }, {
     sequelize,
     modelName: 'RecruitComment',

@@ -6,8 +6,8 @@ class RecruitController{
     createRecruit = async(req,res,next)=>{
         try{
             const {userId}=res.locals.user;
-            const {title,content,nickname} = req.body;
-            const createRecruit = await this.recruitService.createRecruit({userId,title,content,nickname});
+            const {title,content} = req.body;
+            const createRecruit = await this.recruitService.createRecruit({userId,title,content});
             res.status(200).json({data:createRecruit});
         }catch(error){
             next(error);

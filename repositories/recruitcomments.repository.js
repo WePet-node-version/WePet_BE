@@ -2,12 +2,11 @@ const {User,RecruitComment} = require('../models');
 const { Op } = require('sequelize');
 
 class RecruitCommentRepository{
-    createComment = async({userId,recruitId,comment,nickname})=>{
+    createComment = async({userId,recruitId,comment})=>{
         const createComment = await RecruitComment.create({
             userId,
             recruitId,
             comment,
-            nickname
         })
         return createComment
     }

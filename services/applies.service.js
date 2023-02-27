@@ -14,7 +14,6 @@ class ApplyService{
             userId,
             title,
             content,
-            nickname
         })
         return createApply;
     }

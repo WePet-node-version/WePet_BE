@@ -8,7 +8,7 @@ class CommentService{
             userId,
             communityId,
             comment,
-            nickname
+            
         });
         console.log('aa11111111111111111111aa',createComment)
         return createComment

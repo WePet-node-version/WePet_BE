@@ -7,7 +7,7 @@ class CommunityController{
     createCommunity = async(req,res,next)=>{
         try{
             const {userId} = res.locals.user;
-            const {title,content,nickname} = req.body;
+            const {title,content} = req.body;
             // const imageFileName = req.file ? req.file.location : null;
             const image =req.file.location
             console.log(image,'12312312321321312313',req.file)
@@ -16,7 +16,7 @@ class CommunityController{
             // const image = imageFileName
             //     ? process.env.S3_STORAGE_URL + imageFileName
             //     : null;
-            const createCommunity = await this.communityService.createCommunity({userId,title,content,image,nickname})
+            const createCommunity = await this.communityService.createCommunity({userId,title,content,image})
             res.status(200).json({data:createCommunity});
         }catch(error){
             next(error);

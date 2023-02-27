@@ -3,12 +3,11 @@ const RecruitCommentRepository = require('../repositories/recruitcomments.reposi
 class RecruitCommentService{
     recruitcommentRepository = new RecruitCommentRepository();
     //댓글 작성
-    createComment = async({userId,recruitId,comment,nickname})=>{
+    createComment = async({userId,recruitId,comment})=>{
         const createComment = await this.recruitcommentRepository.createComment({
             userId,
             recruitId,
             comment,
-            nickname
         });
         console.log('aa11111111111111111111aa',createComment)
         return createComment

@@ -7,8 +7,8 @@ class RecruitCommentController{
         try{
             const {userId} = res.locals.user;
             const {recruitId}=req.params;
-            const {comment,nickname} = req.body;
-            const createComment = await this.recruitcommentService.createComment({userId,recruitId,comment,nickname})
+            const {comment} = req.body;
+            const createComment = await this.recruitcommentService.createComment({userId,recruitId,comment})
             res.status(201).json({data:createComment});
         }catch(error){
             next(error);

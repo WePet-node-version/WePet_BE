@@ -33,10 +33,7 @@ module.exports = {
       likeCount: {
         type: Sequelize.INTEGER,
       },
-      nickname:{
-        type:Sequelize.DataTypes.STRING,
-        allowNull:false,
-      },
+
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

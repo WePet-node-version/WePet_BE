@@ -18,7 +18,6 @@ class CommunityService{
             title:title,
             content:content,
             image:image,
-            nickname:nickname
         })
         console.log(createCommunity,'ssssssssssssssssssssssssss')
         return createCommunity;

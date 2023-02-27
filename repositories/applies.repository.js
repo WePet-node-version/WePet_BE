@@ -2,12 +2,11 @@ const {User,Apply} =require('../models');
 const { Op } = require('sequelize');
 
 class ApplyRepository {
-    createApply = async({userId,title,content,nickname})=>{
+    createApply = async({userId,title,content})=>{
         const createApply = await Apply.create({
             userId,
             title,
             content,
-            nickname
         })
         return createApply
     }
