@@ -1,7 +1,7 @@
 const CommunityLikeService = require('../services/communityLikes.service');
 
 class CommunityLikeController{
-    CommunityLikeService = new CommunityLikeService();
+    communityLikeService = new CommunityLikeService();
 
     updateLike = async(req,res,next)=>{
         try{
@@ -10,7 +10,7 @@ class CommunityLikeController{
             if(!userId||!communityId){
                 throw new Error('존재하지 않은 정보입니다.')
             }
-            const putLike = await this.CommunityLikeService.putLike({userId,communityId})
+            const putLike = await this.communityLikeService.putLike({userId,communityId})
             res.status(201).json({data:putLike})
         }catch(error){
             next(error)

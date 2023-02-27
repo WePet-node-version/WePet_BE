@@ -9,7 +9,6 @@ class CommentController{
             const {communityId}=req.params;
             const {comment} = req.body;
             const createComment = await this.commentService.createComment({userId,communityId,comment})
-            console.log(req.body,'aaaaaaaaaaaa')
             res.status(201).json({data:createComment});
         }catch(error){
             next(error);

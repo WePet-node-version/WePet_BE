@@ -7,7 +7,12 @@ class CommunityController{
         try{
             const {userId} = res.locals.user;
             const {title,content} = req.body;
-            const createCommunity = await this.communityService.createCommunity({userId,title,content})
+            const imageFileName = req.file ? req.file.key : null;
+            // imageFileName에 파일명이 들어 갔으면 s3 url주소 추가
+            const image = imageFileName
+                ? process.env.S3_STORAGE_URL + imageFileName
+                : null;
+            const createCommunity = await this.communityService.createCommunity({userId,title,content,image})
             res.status(200).json({data:createCommunity});
         }catch(error){
             next(error);
@@ -46,10 +51,16 @@ class CommunityController{
             const {userId} = res.locals.user;
             const {communityId} = req.params;
             const {title,content}=req.body;
+            // 수정사항에 이미지 파일이 있으면 key값으로 이름 정해주고 없으면 Null
+            const imageFileName = req.file ? req.file.key : null;
+             // imageFileName에 파일명 들어가면 s3 url주소 추가
+            const image = imageFileName
+            ? process.env.S3_STORAGE_URL + imageFileName
+            : undefined;
             if(!communityId){
                 throw new Error('존재하지 않는 게시글입니다.')
             }
-            const updateCommunity = await this.communityService.updateCommunity({userId,communityId,title,content});
+            const updateCommunity = await this.communityService.updateCommunity({userId,communityId,title,content,image});
             res.status(200).json({data:updateCommunity})
         }catch(error){
             next(error);

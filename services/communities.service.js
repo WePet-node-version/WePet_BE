@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 class CommunityService{
     communityRepository =new CommunityRepository();
     //게시글 작성
-    createCommunity = async({userId,title,content})=>{
+    createCommunity = async({userId,title,content,image})=>{
         const findById = await this.communityRepository.findById({
             userId
         })
@@ -14,7 +14,8 @@ class CommunityService{
         const createCommunity = await this.communityRepository.createCommunity({
             userId,
             title,
-            content
+            content,
+            image,
         })
         return createCommunity;
     }
@@ -40,13 +41,14 @@ class CommunityService{
             likeCount:findCommunity.likeCount,
             title : findCommunity.title,
             content : findCommunity.content,
+            image : findCommunity.image,
             createdAt : findCommunity.createdAt,
             updatedAt : findCommunity.updatedAt
         }
     };
 
     //게시글 수정
-    updateCommunity = async({userId,communityId,title,content})=>{
+    updateCommunity = async({userId,communityId,title,content,image})=>{
         const findById = await this.communityRepository.findById({userId})
         if(!findById){
             throw new Error('권한이 없습니다.')
@@ -55,7 +57,7 @@ class CommunityService{
         if (!findCommunity) {
             throw new Error("게시글을 찾을 수 없습니다.")
         }
-        const updateCommunity = await this.communityRepository.updateCommunity({userId,communityId,title,content})
+        const updateCommunity = await this.communityRepository.updateCommunity({userId,communityId,title,content,image})
         return updateCommunity;
     }
 

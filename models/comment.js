@@ -19,10 +19,10 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey:'communityId',
         targetKey:'communityId',
       });
-      // this.hasMany(models.CommentLike,{
-      //   foreignKey:'commentId',
-      //   sourceKey:'commentId'
-      // })
+      this.hasMany(models.CommentLike,{
+        foreignKey:'commentId',
+        sourceKey:'commentId'
+      })
     }
   }
   Comment.init({
@@ -54,11 +54,11 @@ module.exports = (sequelize, DataTypes) => {
       type:DataTypes.STRING,
       allowNull:false,
     },
-    // likeCount: {
-    //   type: DataTypes.INTEGER,
-    //   allowNull: true,
-    //   defaultValue: 0,
-    // },
+    likeCount: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      defaultValue: 0,
+    },
     createdAt: {
       allowNull: false,
       type: DataTypes.DATE,

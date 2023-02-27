@@ -53,6 +53,10 @@ module.exports = (sequelize, DataTypes) => {
       type:DataTypes.INTEGER,
       allowNull:true,
       defaultValue:0,
+    },
+    Image:{
+      type:DataTypes.STRING,
+      allowNull:true,
     }
   }, {
     sequelize,

@@ -2,11 +2,12 @@ const {User,Community} =require('../models');
 const { Op } = require('sequelize');
 
 class CommunityRepository {
-    createCommunity = async({userId,title,content})=>{
+    createCommunity = async({userId,title,content,image})=>{
         const createCommunity = await Community.create({
             userId,
             title,
-            content
+            content,
+            image
         })
         return createCommunity
     }
@@ -28,9 +29,9 @@ class CommunityRepository {
         return findCommunity
     }
 
-    updateCommunity = async({communityId,userId,title,content})=>{
+    updateCommunity = async({communityId,userId,title,content,image})=>{
         const updateCommunity = await Community.update(
-            {title,content},
+            {title,content,image},
             {where:{[Op.and]:[{communityId},{userId}]}}
         );
         return updateCommunity

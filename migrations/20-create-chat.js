@@ -2,32 +2,32 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Comments', {
-      commentId: {
+    await queryInterface.createTable('Chats', {
+      chatId: {
         allowNull: false,
-        type:Sequelize.INTEGER,
         autoIncrement: true,
         primaryKey: true,
+        type: Sequelize.INTEGER
       },
-      userId:{
+      userId: {
         allowNull:false,
-        type:Sequelize.INTEGER,
+        type: Sequelize.INTEGER,
         references:{
           model:'Users',
           key:'userId',
         },
         onDelete:'cascade',
       },
-      communityId: {
-        allowNull :false,
-        type:Sequelize.INTEGER,
+      roomId: {
+        allowNull:false,
+        type: Sequelize.INTEGER,
         references:{
-          model:'Communities',
-          key:'communityId',
+          model:'Rooms',
+          key:'roomId',
         },
         onDelete:'cascade',
       },
-      comment: {
+      message: {
         type: Sequelize.STRING
       },
       createdAt: {
@@ -41,6 +41,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Comments');
+    await queryInterface.dropTable('Chats');
   }
 };

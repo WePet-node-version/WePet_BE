@@ -2,8 +2,8 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Communities', {
-      communityId: {
+    await queryInterface.createTable('CommentLikes', {
+      commentLikeId: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
@@ -18,16 +18,14 @@ module.exports = {
         },
         onDelete:'cascade',
       },
-      title: {
-        type: Sequelize.STRING,
-        allowNull:false,
-      },
-      content: {
-        type: Sequelize.STRING,
-        allowNull:false
-      },
-      likeCount:{
-        type:Sequelize.INTEGER,
+      commentId: {
+        allowNull : false,
+        type: Sequelize.INTEGER,
+        references:{
+          model:'Comments',
+          key:'commentId',
+        },
+        onDelete:'cascade',
       },
       createdAt: {
         allowNull: false,
@@ -40,6 +38,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Communities');
+    await queryInterface.dropTable('CommentLikes');
   }
 };
