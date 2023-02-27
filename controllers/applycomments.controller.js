@@ -1,14 +1,14 @@
-const RecruitCommentService = require('../services/recruitcomments.service')
+const ApplyCommentService = require('../services/applycomments.service')
 
-class RecruitCommentController{
-    recruitcommentService = new RecruitCommentService();
+class ApplyCommentController{
+    applycommentService = new ApplyCommentService();
 
     createComment = async(req,res,next)=>{
         try{
             const {userId} = res.locals.user;
-            const {recruitId}=req.params;
+            const {applyId}=req.params;
             const {comment} = req.body;
-            const createComment = await this.recruitcommentService.createComment({userId,recruitId,comment})
+            const createComment = await this.applycommentService.createComment({userId,applyId,comment})
             res.status(201).json({data:createComment});
         }catch(error){
             next(error);
@@ -18,8 +18,8 @@ class RecruitCommentController{
     findAllComment = async(req,res,next)=>{
         try{
             const {userId} = res.locals.user;
-            const {recruitId} = req.params;
-            const findAllComment = await this.recruitcommentService.findAllComment({userId,recruitId})
+            const {applyId} = req.params;
+            const findAllComment = await this.applycommentService.findAllComment({userId,applyId})
             res.status(200).json({data:findAllComment})
         }catch(error){
             next(error);
@@ -29,12 +29,12 @@ class RecruitCommentController{
     deleteComment=async(req,res,next)=>{
         try{
             const{userId}=res.locals.user;
-            const{recruitcommentId}=req.params;
-            const deleteComment = await this.recruitcommentService.deleteComment({userId,recruitcommentId})
+            const{applycommentId}=req.params;
+            const deleteComment = await this.applycommentService.deleteComment({userId,applycommentId})
             res.status(200).json({data:deleteComment,message:'댓글을 삭제하였습니다.'})
         }catch(error){
             next(error)
         }
     }
 }
-module.exports = RecruitCommentController
+module.exports = ApplyCommentController;

@@ -11,5 +11,7 @@ router.use('/',require('./kakao.route'));
 router.use('/pets',require('./pets.route'))
 router.use('/recruits',require('./recruits.route'))
 router.use('/applies',require('./applies.route'))
+router.use('/recruitcomments',require('./recruitcomments.route'));
+router.use('/applycomments',require('./applycomments.route'))
 module.exports =router;
 
