@@ -7,7 +7,8 @@ class CommentService{
         const createComment = await this.commentRepository.createComment({
             userId,
             communityId,
-            comment
+            comment,
+            nickname
         });
         console.log('aa11111111111111111111aa',createComment)
         return createComment

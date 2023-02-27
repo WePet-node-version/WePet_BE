@@ -2,13 +2,15 @@ const {User,Community} =require('../models');
 const { Op } = require('sequelize');
 
 class CommunityRepository {
-    createCommunity = async({userId,title,content,image})=>{
+    createCommunity = async({userId,title,content,image,nickname})=>{
         const createCommunity = await Community.create({
-            userId,
-            title,
-            content,
-            image
+            userId:userId,
+            title:title,
+            content:content,
+            image:image,
+            nickname:nickname
         })
+        console.log(createCommunity,"rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr")
         return createCommunity
     }
 

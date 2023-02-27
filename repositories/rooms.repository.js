@@ -12,21 +12,20 @@ class RoomRepository extends Room {
     super();
   }
   //*roomId 가져오기 room 없으면 생성
-  findRoomId = async ({ groupId, sender, receiver }) => {
+  findRoomId = async ({ userId, sender }) => {
     const [findRoomId, created] = await Room.findOrCreate({
-      where: { groupId: groupId, sender: sender, receiver: receiver },
+      where: { userId:userId, sender: sender},
       dafaults: {
-        groupId: groupId,
+        userId: userId,
         sender: sender,
-        receiver: receiver,
       },
     });
     return findRoomId;
   };
   //* 그룹유저찾기
-  findGroupUser = async ({ groupId, userId }) => {
-    const findGroupUser = await GroupUser.findOne({
-      where: { [Op.and]: [{ groupId }, { userId }] },
+  findGroupUser = async ({ userId }) => {
+    const findGroupUser = await User.findOne({
+      where: { userId },
     });
     return findGroupUser;
   };
@@ -36,7 +35,7 @@ class RoomRepository extends Room {
       where: { roomId },
       offset: offset,
       limit: parseInt(pageSize),
-      attributes: ['groupUserId', 'message', 'createdAt'],
+      attributes: ['userId', 'message', 'createdAt'],
       order: [['createdAt', 'DESC']],
       raw: true,
     });
@@ -50,10 +49,10 @@ class RoomRepository extends Room {
   };
 
   //*채팅 저장하기
-  saveChat = async ({ roomId, groupUserId, message }) => {
+  saveChat = async ({ roomId, userId, message }) => {
     const saveChat = await Chat.create({
       roomId,
-      groupUserId,
+      userId,
       message,
       createdAt: moment().subtract(9, 'h').format('YYYY-MM-DD HH:mm:ss'),
     });
@@ -61,7 +60,7 @@ class RoomRepository extends Room {
   };
 
   //*안읽은 메세지(roomId 조회)
-  unreadChat = async ({ sender, receiver }) => {
+  unreadChat = async ({ sender }) => {
     const unreadChat = await Room.findOne({
       where: {
         sender,

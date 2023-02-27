@@ -4,18 +4,16 @@ const ValidationError = require('../exceptions/index.exception');
 class RoomService {
   roomRepository = new RoomRepository();
   //*roomId 찾기 없으면 만들어서 가져오기
-  findRoomId = async ({ groupId, sender, receiver, userId }) => {
+  findRoomId = async ({ groupId, sender, userId }) => {
     const findGroupUser = await this.roomRepository.findGroupUser({
-      groupId,
       userId,
     });
     if (!findGroupUser) {
-      throw new ValidationError('잘못된 요청입니다.');
+      throw new Error('잘못된 요청입니다.');
     }
     const findRoomId = await this.roomRepository.findRoomId({
       groupId,
       sender,
-      receiver,
     });
     return findRoomId.roomId;
   };

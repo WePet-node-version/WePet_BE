@@ -13,7 +13,8 @@ class ApplyService{
         const createApply = await this.applyRepository.createApply({
             userId,
             title,
-            content
+            content,
+            nickname
         })
         return createApply;
     }

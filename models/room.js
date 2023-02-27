@@ -14,9 +14,24 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Room.init({
-    userId: DataTypes.INTEGER,
-    sender: DataTypes.INTEGER,
-    receiver: DataTypes.INTEGER
+    roomId:{
+      allowNull : false,
+      autoIncrement:true,
+      primaryKey:true,
+      type:DataTypes.INTEGER,
+    },
+    userId:{
+      allowNull:false,
+      type:DataTypes.INTEGER,
+      references:{
+        model:'User',
+        key:'userId',
+      },
+      onDelete:'cascade',
+    },
+    sender: {
+      type:DataTypes.INTEGER,
+    }
   }, {
     sequelize,
     modelName: 'Room',

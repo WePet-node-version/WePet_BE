@@ -6,8 +6,8 @@ class ApplyController{
     createApply = async(req,res,next)=>{
         try{
             const {userId}=res.locals.user;
-            const {title,content} = req.body;
-            const createApply = await this.applyService.createApply({userId,title,content});
+            const {title,content,nickname} = req.body;
+            const createApply = await this.applyService.createApply({userId,title,content,nickname});
             res.status(200).json({data:createApply});
         }catch(error){
             next(error);

@@ -13,7 +13,8 @@ class RecruitService{
         const createRecruit = await this.recruitRepository.createRecruit({
             userId,
             title,
-            content
+            content,
+            nickname
         })
         return createRecruit;
     }

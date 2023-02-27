@@ -5,15 +5,14 @@ class RoomController {
 
   findRoomId = async (req, res, next) => {
     try {
-        const { sender, receiver } = req.query;
+        const { sender } = req.query;
         const { userId } = res.locals.user;
 
-        if (!userId || !sender || !receiver) {
+        if (!userId || !sender) {
             throw new Error('잘못된 요청입니다.');
         }
         const findRoomId = await this.roomService.findRoomId({
             sender,
-            receiver,
             userId,
         });
         res.status(200).json({ ok: true, data: findRoomId });
@@ -56,47 +55,18 @@ class RoomController {
       next(error);
     }
   };
-  //*안읽은 메세지
-  unreadChat = async (req, res, next) => {
-    try {
-      const { sender, receiver, timestamps } = req.query;
-      if (!sender || !receiver || !timestamps) {
-        throw new InvalidParamsError('잘못된 요청입니다.');
-      }
-      console.log('받은 timestapms:::::::::::::::::::', timestamps);
-      console.log(
-        '현재시간이 되어야 합니다.:::::::::::::::::::::::::',
-        moment(+timestamps).format('YYYY-MM-DD HH:mm:ss'),
-      );
-      const unreadChat = await this.roomService.unreadChat({
-        sender,
-        receiver,
-        timestamps,
-      });
-      console.log('불러온채팅입니다:::::::::::::::::', unreadChat);
-      res.status(200).json({ ok: true, data: unreadChat });
-    } catch (error) {
-      next(error);
-    }
-  };
-  //*상대 유저 정보 보내주기(groupUserId,img(ori포함),nick)
+
   findChatUser = async (req, res, next) => {
     try {
       const { roomId } = req.params;
       const { userId } = res.locals.user;
-      // const getData = redisGet(`groupId:${groupId}:roomId:${roomId}`);
-      // if (getData) {
-      //   return res.staus(200).json({ ok: true, data: getData });
-      // }
-      if (!groupId || !roomId || !userId) {
-        throw new InvalidParamsError('잘못된 요청입니다.');
+      if (!roomId || !userId) {
+        throw new Error('잘못된 요청입니다.');
       }
       const findChatUser = await this.roomService.findChatUser({
-        groupId,
         roomId,
         userId,
       });
-      // await redisSet(`groupId:${groupId}:roomId:${roomId}`, findChatUser, 60);
       res.status(200).json({ ok: true, data: findChatUser });
     } catch (error) {
       next(error);

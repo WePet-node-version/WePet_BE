@@ -2,11 +2,12 @@ const {User,Recruit} =require('../models');
 const { Op } = require('sequelize');
 
 class RecruitRepository {
-    createRecruit = async({userId,title,content})=>{
+    createRecruit = async({userId,title,content,nickname})=>{
         const createRecruit = await Recruit.create({
             userId,
             title,
-            content
+            content,
+            nickname
         })
         return createRecruit
     }
